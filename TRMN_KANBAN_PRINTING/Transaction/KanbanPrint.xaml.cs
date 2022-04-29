@@ -219,7 +219,7 @@ namespace TRMN_KANBAN_PRINTING.Transaction
                             objArray[6] = (object)(dateTime.Year.ToString() + "-" + this.cmbMonth.Text);
                             objArray[7] = (object)"";
                            // objArray[8] = (object)array1;
-                            //objArray[9] = (object)array2
+                            //objArray[9] = (object)array2;
                             objArray[8] = (object)str6;
                             rows.Add(objArray);
                             int32_2 -= (int)Convert.ToInt16(dataRowView["BOX_QTY"]);
