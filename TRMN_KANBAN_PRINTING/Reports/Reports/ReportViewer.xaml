@@ -1,0 +1,43 @@
+﻿<Window x:Class="TRMN_KANBAN_PRINTING.Reports.Reports.ReportViewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TRMN_KANBAN_PRINTING.Reports.CrystallReport"
+        xmlns:my="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer"
+        Loaded="Window_Loaded" Title="ReportViewer" Style="{StaticResource WindowStyle}">
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+            <TextBlock Text="REPORT VIEWER" HorizontalAlignment="Center" FontFamily="Calibri" FontSize="25" Margin="10"
+                 Foreground="OrangeRed" FontWeight="ExtraBold"/>
+            <Image Name="image3" Stretch="UniformToFill" VerticalAlignment="Top" Margin="0,35,0,0" Height="25"
+             Width="210" Source="/TRMN_KANBAN_PRINTING;component/Images/HorizantalLine.jpg"/>
+        </Grid>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Width="199" Margin="35,0,0,0">
+            <TextBlock x:Name="txtDatetime" FontWeight="Bold" FontSize="15" Width="190" Text="Date Time"
+                 Foreground="Black"/>
+        </Grid>
+        <Grid Margin="0,0,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <Button Click="BtnExit_Click" Name="btnExit" ToolTip="Alt+E for EXIT" Grid.Column="3">
+                <TextBlock>
+          <Underline>E</Underline>XIT
+                </TextBlock>
+            </Button>
+        </Grid>
+        <Border Style="{StaticResource BorderStyle}" VerticalAlignment="Top" HorizontalAlignment="Center"
+            Margin="0,75,0,45" Grid.Row="1">
+            <Grid Margin="20">
+                <my:CrystalReportsViewer Name="crystalReportsViewer1" ShowLogo="false" VerticalAlignment="Top" ShowPrevPageButton="true"
+                                 ShowToolbar="true" ShowStatusbar="true" ShowRefreshButton="true" ShowGoToPageButton="true"
+                                 ShowExportButton="true" ShowCopyButton="true" ShowNextPageButton="true" ShowOpenFileButton="true"
+                                 ShowToggleSidePanelButton="false" Width="{Binding}" Height="{Binding}"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

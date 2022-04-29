@@ -1,0 +1,77 @@
+﻿<Window x:Class="TRMN_KANBAN_PRINTING.StartUp.DatabaseSetting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TRMN_KANBAN_PRINTING.StartUp"
+        mc:Ignorable="d"
+        Title="DatabaseSetting" AllowsTransparency="True" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" KeyDown="Window_KeyDown" Loaded="Window_Loaded">
+    <Border Height="400" Width="650" BorderBrush="Black" BorderThickness="1" Background="DeepSkyBlue" >
+        <Border   Background="White" BorderThickness="3" CornerRadius="290,80,80,50">
+            <Grid>
+                <Grid HorizontalAlignment="Center" Margin="200,-5,0,0" VerticalAlignment="Top" >
+                    <TextBlock Text="DATABASE SETTING" HorizontalAlignment="Center" FontFamily="Calibri" FontSize="25" Margin="10" Foreground="OrangeRed" FontWeight="ExtraBold" ></TextBlock>
+                    <Image Name="image3" Stretch="UniformToFill" VerticalAlignment="Top" Margin="0,35,0,0" Height="35" Width="250"  Source="/TRMN_KANBAN_PRINTING;component/Images/HorizantalLine.jpg"/>
+
+                </Grid>
+                <Border Style="{StaticResource BorderStyle}"   VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,35,32,0">
+                    <Grid Margin="7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"></RowDefinition>
+                            <RowDefinition Height="35"></RowDefinition>
+                            <RowDefinition Height="35"></RowDefinition>
+                            <RowDefinition Height="35"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="240"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Server Name:" Grid.Row="0" Grid.Column="0" />
+                        <Label Content="Server ID:" Grid.Row="1" Grid.Column="0" />
+                        <Label Content="Server Password:" Grid.Row="2" Grid.Column="0"  />
+                        <Label Content="Database Name" Grid.Row="3" Grid.Column="0" />
+
+                        <ComboBox Name="cbServerName" Grid.Column="1" />
+                        <TextBox Name="txtServerID"  Grid.Column="1" Grid.Row="1"  />
+                        <PasswordBox   Name="txtServerPassword"  Grid.Column="1" Grid.Row="2"  ></PasswordBox>
+                        <Popup   Width="auto" x:Name="txtPasswordPopup" Placement="Bottom" PlacementRectangle="400,100, 0, 0" IsOpen="False">
+                            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="1" >
+                                <TextBlock>
+                                    <TextBlock  x:Name="PopupTextBlock" Foreground="Red" FontFamily="Calibri"  TextWrapping="Wrap"  FontSize="15" TextAlignment="Center" Width="261" Background="White"><Bold>  CAPSLOCK IS ON! </Bold> </TextBlock><LineBreak></LineBreak>
+                                    <TextBlock  x:Name="PopupTextBlock1" FontFamily="Calibri" TextWrapping="Wrap"  Foreground="Black" FontSize="12" Width="261"  TextAlignment="Center" Background="White"> Having Caps Lock on may cause you to enter your password incorrectly<LineBreak></LineBreak> You should press Caps Lock to turn it off before entering your password.                             
+                           </TextBlock>
+                                </TextBlock>
+
+                            </Border>
+                        </Popup>
+                        <ComboBox KeyDown="cbDataBaseName_KeyDown" Name="cbDataBaseName" Grid.Column="1" Grid.Row="3" GotFocus="cbDataBaseName_GotFocus" />
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}" Margin="0,0,33,30"   VerticalAlignment="Bottom" HorizontalAlignment="Right" >
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Button Click="btnsave_Click" ToolTip="Press Alt+S for Save" Grid.Column="0">
+                            <TextBlock><Underline>S</Underline>AVE</TextBlock>
+                        </Button>
+                        <Button Click="btnClear_Click" ToolTip="Press Alt+C for Clear" Grid.Column="1">
+                            <TextBlock><Underline>C</Underline>LEAR</TextBlock>
+                        </Button>
+                        <Button ToolTip="Press Alt+E for Exit" Click="btnExit_Click" Grid.Column="2">
+                            <TextBlock><Underline>E</Underline>XIT</TextBlock>
+                        </Button>
+                    </Grid>
+                </Border>
+                <Grid VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,100,0,20">
+                    <Image Source="/TRMN_KANBAN_PRINTING;component/Images/sql-server-icon-png-32.png" Stretch="Fill" Width="200" Height="230"></Image>
+                </Grid>
+            </Grid>
+        </Border>
+    </Border>
+</Window>

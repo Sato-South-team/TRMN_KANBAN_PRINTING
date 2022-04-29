@@ -1,0 +1,184 @@
+﻿<Window x:Class="TRMN_KANBAN_PRINTING.Transaction.DashBoard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TRMN_KANBAN_PRINTING.Transaction"
+        xmlns:local1="clr-namespace:ValueConverters"
+        Loaded="Window_Loaded" Title="DashBoard" Style="{StaticResource WindowStyle}">
+    <FrameworkElement.Resources>
+        <local1:MultivalueConverter x:Key="StringComparisonConverter"/>
+    </FrameworkElement.Resources>
+    <Grid>
+        <Image Name="ima"/>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="35,0,0,0">
+            <TextBlock x:Name="txtDatetime" FontWeight="Bold" FontSize="15" Text="Date Time" Foreground="Black"/>
+        </Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+            <TextBlock Text="KANBAN DASH BOARD" HorizontalAlignment="Center" FontFamily="Calibri" FontSize="25"
+                 Margin="10" Foreground="OrangeRed" FontWeight="ExtraBold"/>
+            <Image Name="image3" Stretch="UniformToFill" VerticalAlignment="Top" Margin="0,35,0,0" Height="35"
+             Width="300" Source="/TRMN_KANBAN_PRINTING;component/Images/HorizantalLine.jpg"/>
+        </Grid>
+        <Border Style="{StaticResource BorderStyle}" Margin="0,80,0,53" VerticalAlignment="Stretch"
+            HorizontalAlignment="Center">
+            <Grid Margin="10">
+                <DataGrid x:Name="dvgDeatils" FontSize="50">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="AUTO" Header="PLANT" ElementStyle="{StaticResource WrapText}" Binding="{Binding Plant}">
+                            <DataGridColumn.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Plant}" Value="1">
+                                            <Setter Property="Control.Background" Value="DeepSkyBlue"/>
+                                            <Setter Property="Control.Foreground" Value="Black"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Plant}" Value="2">
+                                            <Setter Property="Control.Background" Value="Coral"/>
+                                            <Setter Property="Control.Foreground" Value="Black"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="AUTO" Header="ORDER NO" ElementStyle="{StaticResource WrapText}" Binding="{Binding OrderNo}"/>
+                        <DataGridTextColumn Width="AUTO" Header="PDS NO" ElementStyle="{StaticResource WrapText}" Binding="{Binding PDSNo}"/>
+                        <DataGridTextColumn Width="205" Header="ORDERED QTY" ElementStyle="{StaticResource WrapText}"
+                                Binding="{Binding OrderQty}"/>
+                        <DataGridTextColumn Width="185" Header="PRINTED QTY" ElementStyle="{StaticResource WrapText}"
+                                Binding="{Binding PrintedQty}">
+                            <DataGridColumn.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Style.Triggers>
+                                        <DataTrigger Value="True">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource StringComparisonConverter}">
+                                                    <Binding Path="OrderQty"/>
+                                                    <Binding Path="PrintedQty"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Control.Background" Value="Green"/>
+                                            <Setter Property="Control.Foreground" Value="White"/>
+                                        </DataTrigger>
+                                        <DataTrigger Value="False">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource StringComparisonConverter}">
+                                                    <Binding Path="OrderQty"/>
+                                                    <Binding Path="PrintedQty"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Control.Background" Value="Red"/>
+                                            <Setter Property="Control.Foreground" Value="Black"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="200" Header="SHOPPED QTY" ElementStyle="{StaticResource WrapText}"
+                                Binding="{Binding ShoppedQty}">
+                            <DataGridColumn.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Style.Triggers>
+                                        <DataTrigger Value="True">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource StringComparisonConverter}">
+                                                    <Binding Path="OrderQty"/>
+                                                    <Binding Path="ShoppedQty"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Control.Background" Value="Green"/>
+                                            <Setter Property="Control.Foreground" Value="White"/>
+                                        </DataTrigger>
+                                        <DataTrigger Value="False">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource StringComparisonConverter}">
+                                                    <Binding Path="OrderQty"/>
+                                                    <Binding Path="ShoppedQty"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Control.Background" Value="Red"/>
+                                            <Setter Property="Control.Foreground" Value="Black"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="240" Header="ARRANGED QTY" ElementStyle="{StaticResource WrapText}"
+                                Binding="{Binding ArrangedQty}">
+                            <DataGridColumn.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Style.Triggers>
+                                        <DataTrigger Value="True">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource StringComparisonConverter}">
+                                                    <Binding Path="OrderQty"/>
+                                                    <Binding Path="ArrangedQty"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Control.Background" Value="Green"/>
+                                            <Setter Property="Control.Foreground" Value="White"/>
+                                        </DataTrigger>
+                                        <DataTrigger Value="False">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource StringComparisonConverter}">
+                                                    <Binding Path="OrderQty"/>
+                                                    <Binding Path="ArrangedQty"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Control.Background" Value="Red"/>
+                                            <Setter Property="Control.Foreground" Value="Black"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="275" Header="DESPATCHED QTY" ElementStyle="{StaticResource WrapText}"
+                                Binding="{Binding DespatchedQty}">
+                            <DataGridColumn.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Style.Triggers>
+                                        <DataTrigger Value="True">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource StringComparisonConverter}">
+                                                    <Binding Path="OrderQty"/>
+                                                    <Binding Path="DespatchedQty"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Control.Background" Value="Green"/>
+                                            <Setter Property="Control.Foreground" Value="White"/>
+                                        </DataTrigger>
+                                        <DataTrigger Value="False">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource StringComparisonConverter}">
+                                                    <Binding Path="OrderQty"/>
+                                                    <Binding Path="DespatchedQty"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Control.Background" Value="Red"/>
+                                            <Setter Property="Control.Foreground" Value="Black"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="auto" Header=" STATUS  " Visibility="Hidden" ElementStyle="{StaticResource WrapText}"
+                                Binding="{Binding status}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+        <Grid Margin="0,0,0,9" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <Button Click="BtnExit_Click" Name="btnExit" ToolTip="Alt+E for EXIT" HorizontalAlignment="Left" Width="95">
+                <TextBlock>
+          <Underline>E</Underline>XIT
+                </TextBlock>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

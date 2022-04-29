@@ -1,0 +1,227 @@
+﻿<Window x:Class="TRMN_KANBAN_PRINTING.Transaction.KanbanPrint"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TRMN_KANBAN_PRINTING.Transaction"
+        mc:Ignorable="d"
+        Title="KanbanPrint" Loaded="Window_Loaded" Style="{StaticResource WindowStyle}" KeyDown="Window_KeyDown">
+    <Grid>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="35,0,0,0">
+            <TextBlock FontWeight="Bold" FontSize="15"  x:Name="txtDatetime" Text="Date Time"  Foreground="Black"></TextBlock>
+        </Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" >
+            <TextBlock Text="KANBAN PRINT" HorizontalAlignment="Center" FontFamily="Calibri" FontSize="25" Margin="10" Foreground="OrangeRed" FontWeight="ExtraBold" ></TextBlock>
+            <Image Name="image3" Stretch="UniformToFill" VerticalAlignment="Top" Margin="0,35,0,0" Height="25" Width="210"  Source="/TRMN_KANBAN_PRINTING;component/Images/HorizantalLine.jpg"/>
+
+        </Grid>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="0,0,40,0">
+            <TextBlock FontWeight="Bold" FontSize="15" x:Name="txtBatch" Text="Last Batch No="  Foreground="Black"></TextBlock>
+        </Grid>
+        <Border Style="{StaticResource BorderStyle}" Margin="0,90,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" >
+            <Grid Margin="7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="105"></ColumnDefinition>
+                    <ColumnDefinition Width="140"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15"></RowDefinition>
+                </Grid.RowDefinitions>
+                <RadioButton Name="rdSingle" Checked="RdSingle_Checked" Grid.Column="0" GroupName="Parts" Content="SINGLE PART" HorizontalAlignment="Left" Margin="4,-8,0,-7"></RadioButton>
+                <RadioButton Name="rdMultiple" Checked="RdMultiple_Checked"  Grid.Column="1" GroupName="Parts" Content="MULTIPLE PARTS"></RadioButton>
+            </Grid>
+        </Border>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Margin="800,102,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"></ColumnDefinition>
+                <ColumnDefinition Width="165"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="0" Content="Month:"></Label>
+
+            <ComboBox Name="cmbMonth" Grid.Row="0" Grid.Column="1">
+                <ComboBoxItem Content="January"/>
+                <ComboBoxItem Content="February"/>
+                <ComboBoxItem Content="March"/>
+                <ComboBoxItem Content="April"/>
+                <ComboBoxItem Content="May"/>
+                <ComboBoxItem Content="June"/>
+                <ComboBoxItem Content="July"/>
+                <ComboBoxItem Content="August"/>
+                <ComboBoxItem Content="September"/>
+                <ComboBoxItem Content="October"/>
+                <ComboBoxItem Content="November"/>
+                <ComboBoxItem Content="December"/>
+            </ComboBox>
+        </Grid>
+        <Border Style="{StaticResource BorderStyle}" Margin="0,140,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" >
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="560"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130"></RowDefinition>
+                </Grid.RowDefinitions>
+                <GroupBox Grid.Column="1" FontWeight="DemiBold" Name="gbMultiple"  BorderThickness="2" BorderBrush="Black" Header="MULTIPLE PARTS" FontSize="15" Foreground="OrangeRed" FontFamily="Calibri" Grid.ColumnSpan="3">
+                    <Grid Margin="10" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="300"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Content="Kanban Type :"></Label>
+                        <Label Grid.Column="0" Grid.Row="1" Content="Kanban File :"></Label>
+                        <ComboBox Name="cmbkanbanType" Grid.Row="0" Grid.Column="1" SelectionChanged="CmbkanbanType_SelectionChanged">
+                            <ComboBoxItem Content="TRMN Kanban"/>
+                            <ComboBoxItem Content="TKM Kanban"/>
+                            <ComboBoxItem Content="TAC Kanban"/>
+                        </ComboBox>
+                        <TextBox Name="txtBrowseFile" Grid.Column="1" Grid.Row="1"></TextBox>
+                        <Button  ToolTip="Alt+B for BROWSE" Grid.Row="1" Grid.Column="2" Name="btnBrowse" Click="BtnBrowse_Click">
+                            <TextBlock><Underline>B</Underline>ROWSE</TextBlock>
+                        </Button>
+                        <TextBlock Name="txtTemplate"  Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Height="25" Margin="10,0,0,0" VerticalAlignment="Center">           
+                        <Hyperlink x:Name="LinkTemplate" FontWeight="Bold"  Foreground="OrangeRed"  Click="LinkTemplate_Click"  FontFamily="Calibri"  FontSize="17" NavigateUri=""> Template </Hyperlink>
+                        </TextBlock>
+                    </Grid>
+                </GroupBox>
+                <GroupBox  Grid.Column="0"  Name="gbSingle" FontWeight="DemiBold"  BorderThickness="2" BorderBrush="Black" Header="SINGLE PART" FontSize="15" Foreground="OrangeRed" FontFamily="Calibri">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90"></ColumnDefinition>
+                            <ColumnDefinition Width="185"></ColumnDefinition>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="110"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Content="Part no :"></Label>
+                        <Label Grid.Column="2" Grid.Row="0" Content="Total Qty :"></Label>
+                        <Label Grid.Column="0" Grid.Row="1" Content="Label Type :"></Label>
+                        <ComboBox Name="cmbPartNo" Grid.Row="0" Grid.Column="1" ></ComboBox>
+                        <TextBox Name="txtTotalQTy" Grid.Column="3" Grid.Row="0" PreviewTextInput="TxtTotalQTy_PreviewTextInput"></TextBox>
+                        <ComboBox Name="cmbLabelType" Grid.Row="1" Grid.Column="1" >
+                            <ComboBoxItem>PERMANENT</ComboBoxItem>
+                            <ComboBoxItem>TEMPORARY</ComboBoxItem>
+                        </ComboBox>
+                        <Button  ToolTip="Alt+E for GETDETAILS" Height="38"  Width="150" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Grid.ColumnSpan="2" Name="btnGetDetails" Click="BtnGetDetails_Click">
+                            <TextBlock><Underline>G</Underline>ET DETAILS</TextBlock>
+                        </Button>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Border>
+        <Border Style="{StaticResource BorderStyle}" Margin="0,305,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" >
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button ToolTip="Alt+P for PRINT" Name="btnSave" Grid.Column="0" Click="BtnSave_Click"  >
+                    <TextBlock><Underline>P</Underline>RINT</TextBlock>
+                </Button>
+                <!--<Button ToolTip="Alt+P for PRINT" Name="btnPrint" Grid.Column="1" Click="BtnPrint_Click" HorizontalAlignment="Left" Width="95" >
+                    <TextBlock><Underline>P</Underline>RINT</TextBlock>
+                </Button>-->
+                <Button ToolTip="Alt+C for CLEAR" Name="btnClear" Grid.Column="1" HorizontalAlignment="Left" Width="95" Click="BtnClear_Click" >
+                    <TextBlock><Underline>C</Underline>LEAR</TextBlock>
+                </Button>
+                <Button ToolTip="Alt+E for EXIT" Name="btnExit" Grid.Column="2" Click="BtnExit_Click" >
+                    <TextBlock><Underline>E</Underline>XIT</TextBlock>
+                </Button>
+                <Button ToolTip="Alt+E for TEMPLATE" Name="btnBarcodeTemp" Grid.Column="3" Click="BtnBarcodeTemp_Click" >
+                    <TextBlock>BAR-<Underline>T</Underline>EMPLATE</TextBlock>
+                </Button>
+            </Grid>
+        </Border>
+        <Grid VerticalAlignment="Top" Margin="0,325,50,0" HorizontalAlignment="Right">
+          
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Height="45" FontSize="20" Grid.Column="0" Grid.Row="0" Content="Total Print:"></Label>
+            <Label Name="lblCount" Height="45" HorizontalContentAlignment="Left" Foreground="Red" FontSize="35" Grid.Column="1" Grid.Row="0" Content="0"></Label>
+        </Grid>
+        <Border Style="{StaticResource BorderStyle}" Margin="0,365,0,9" VerticalAlignment="Stretch" HorizontalAlignment="Center" >
+            <Grid Margin="7">
+                <DataGrid x:Name="dvgDeatilsForTRMN">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="auto" Header="  SL.NO  " ElementStyle="{StaticResource WrapText}"  Binding="{Binding SL_NO}" />
+                        <DataGridTextColumn Width="auto" Header="  PART NO " ElementStyle="{StaticResource WrapText}" Binding="{Binding TR_PART_NUMBER}" />
+                        <DataGridTextColumn Width="auto" Header="  PART NAME  " ElementStyle="{StaticResource WrapText}" Binding="{Binding PART_NAME}" />
+                        <DataGridTextColumn Width="auto" Header=" E KANBAN NO  " ElementStyle="{StaticResource WrapText}" Binding="{Binding KANBAN_NO}" />
+                        <DataGridTextColumn Width="auto" Header="  LINE NO  " ElementStyle="{StaticResource WrapText}" Binding="{Binding LINE_NO}" />
+                        <DataGridTextColumn Width="auto" Header="  LOCATION NO  " ElementStyle="{StaticResource WrapText}" Binding="{Binding LOCATION_NAME}" />
+                        <DataGridTextColumn Width="auto" Header=" CUSTOMER PART NO " ElementStyle="{StaticResource WrapText}" Binding="{Binding CUSTOMER_PART_NO}" />
+                        <DataGridTextColumn Width="auto" Header="  KANBAN LOC/PROCESS LINE " ElementStyle="{StaticResource WrapText}" Binding="{Binding KANBAN_LOC_PROCESS_LINE_NO}" />
+                        <DataGridTextColumn Width="auto" Header="  SUPPLIER CODE/NAME " ElementStyle="{StaticResource WrapText}" Binding="{Binding SUPPLIER_CODE_NAME}" />
+                        <DataGridTextColumn Width="auto" Header="  ID CODE  " ElementStyle="{StaticResource WrapText}" Binding="{Binding ID_CODE}" />
+                        <DataGridTextColumn Width="auto" Header="  BIN SIZE " ElementStyle="{StaticResource WrapText}" Binding="{Binding BOX_TYPE}" />
+                        <DataGridTextColumn Width="auto" Header="  BIN QTY  " ElementStyle="{StaticResource WrapText}" Binding="{Binding BOX_QTY}" />
+                        <DataGridTextColumn Width="auto" Header=" BIN NO " ElementStyle="{StaticResource WrapText}" Binding="{Binding BIN_NO}" />
+                        <DataGridTextColumn Width="auto" Header=" TOTAL QTY " ElementStyle="{StaticResource WrapText}" Binding="{Binding TOTAL_QTY}" />
+                        <DataGridTextColumn Width="auto" Header=" NO OF LABELS " ElementStyle="{StaticResource WrapText}" Binding="{Binding NO_OF_LABLES}" />
+                        <DataGridTextColumn Width="auto" Header=" PRINTED LABELS " ElementStyle="{StaticResource WrapText}" Binding="{Binding PRINTED_QTY}" />
+                        <DataGridTextColumn Width="auto" Header=" REMAINING LABELS " ElementStyle="{StaticResource WrapText}" Binding="{Binding REMAINING_QTY}" />
+                        <DataGridTextColumn Width="auto" Header=" LOCATION TYPE " ElementStyle="{StaticResource WrapText}" Binding="{Binding LOCATION_TYPE}" />
+                        <DataGridTextColumn Width="auto" Header=" LABEL TYPE " ElementStyle="{StaticResource WrapText}" Binding="{Binding LABEL_TYPE}" />
+                        <DataGridTextColumn Width="auto" Visibility="Hidden" Header=" REF NO " ElementStyle="{StaticResource WrapText}" Binding="{Binding REFNO}" />
+
+                        <DataGridTextColumn Width="auto" Visibility="Visible" Header=" TOTAL PRINTED QTY " ElementStyle="{StaticResource WrapText}" Binding="{Binding TOTALPRINTEDQTY}" />
+
+                    </DataGrid.Columns>
+
+                </DataGrid>
+                <DataGrid x:Name="dvgDeatilsforTKM">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="auto" Header="  SL.NO  " ElementStyle="{StaticResource WrapText}"  Binding="{Binding SLNO}" />
+                        <DataGridTextColumn Width="auto" Header="  PART NO " ElementStyle="{StaticResource WrapText}" Binding="{Binding PARTNO}" />
+                        <DataGridTextColumn Width="auto" Header="  PART NAME  " ElementStyle="{StaticResource WrapText}" Binding="{Binding PARTNAME}" />
+                        <DataGridTextColumn Width="auto" Header=" E KANBAN NO  " ElementStyle="{StaticResource WrapText}" Binding="{Binding KANBANNO}" />
+                        <DataGridTextColumn Width="auto" Header="  QTY/PACK  " ElementStyle="{StaticResource WrapText}" Binding="{Binding BINQTY}" />
+                        <DataGridTextColumn Width="auto" Header="  ARRIVAL DATE  " ElementStyle="{StaticResource WrapText}" Binding="{Binding ARRIVALDATE}" />
+                        <DataGridTextColumn Width="auto" Header="  ARRIVAL TIME  " ElementStyle="{StaticResource WrapText}" Binding="{Binding ARRIVALTIME}" />
+                        <DataGridTextColumn Width="auto" Header=" ORDER NO " ElementStyle="{StaticResource WrapText}" Binding="{Binding ORDERNO}" />
+                        <DataGridTextColumn Width="auto" Header=" PDS NO " ElementStyle="{StaticResource WrapText}" Binding="{Binding PDSNO}" />
+                        <DataGridTextColumn Width="auto" Header=" SUP-STORE ADDRESS " ElementStyle="{StaticResource WrapText}" Binding="{Binding LOCATION_NAME}" />
+                        <DataGridTextColumn Width="auto" Header=" SUPPLIER  " ElementStyle="{StaticResource WrapText}" Binding="{Binding SUPPLIER}" />
+                        <DataGridTextColumn Width="auto" Header="  SUPPLIER CODE  " ElementStyle="{StaticResource WrapText}" Binding="{Binding SUPPLIERCODE}" />
+                        <DataGridTextColumn Width="auto" Header="  STORE ADDRESS " ElementStyle="{StaticResource WrapText}" Binding="{Binding STOREADDRESS}" />
+                        <DataGridTextColumn Width="auto" Header=" PACKING CODE " ElementStyle="{StaticResource WrapText}" Binding="{Binding PACKINGCODE}" />
+
+                        <DataGridTextColumn Width="auto" Header=" DOCK CODE " ElementStyle="{StaticResource WrapText}" Binding="{Binding DOCKCODE}" />
+                        <DataGridTextColumn Width="auto" Header=" P-LANE NO " ElementStyle="{StaticResource WrapText}" Binding="{Binding PLANENO}" />
+                        <DataGridTextColumn Width="auto" Header=" CONVEYANCE NO " ElementStyle="{StaticResource WrapText}" Binding="{Binding CONVEYANCENO}" />
+                        <DataGridTextColumn Width="auto" Header=" KANBAN ORIENTATION " ElementStyle="{StaticResource WrapText}" Binding="{Binding KANBANORIENTATION}" />
+                        <DataGridTextColumn Width="auto" Header=" NO OF LABELS " ElementStyle="{StaticResource WrapText}" Binding="{Binding NOOFLABELS}" />
+                        <DataGridTextColumn Width="auto" Header=" PRINTED LABELS " ElementStyle="{StaticResource WrapText}" Binding="{Binding PRINTEDQTY}" />
+                        <DataGridTextColumn Width="auto" Header=" REMAINING LABELS " ElementStyle="{StaticResource WrapText}" Binding="{Binding REMAININGQTY}" />
+                        <DataGridTextColumn Width="auto" Header=" LOCATION TYPE " ElementStyle="{StaticResource WrapText}" Binding="{Binding LOCATION_TYPE}" />
+                        <DataGridTextColumn Width="auto" Header=" BILLED OUT "  ElementStyle="{StaticResource WrapText}" Binding="{Binding BILLEDOUT}" />
+                        <DataGridTextColumn Width="auto" Header=" REF NO " Visibility="Hidden" ElementStyle="{StaticResource WrapText}" Binding="{Binding REFNO}" />
+                        <DataGridTextColumn Width="auto" Header=" TOTALLABEL " Visibility="Hidden" ElementStyle="{StaticResource WrapText}" Binding="{Binding TOTALABEL}" />
+
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

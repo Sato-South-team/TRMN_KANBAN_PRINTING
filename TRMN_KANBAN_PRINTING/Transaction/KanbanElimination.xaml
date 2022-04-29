@@ -1,0 +1,90 @@
+﻿<Window x:Class="TRMN_KANBAN_PRINTING.Transaction.KanbanElimination"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TRMN_KANBAN_PRINTING.Transaction"
+        Loaded="Window_Loaded" KeyDown="Window_KeyDown" Title="KanbanElimination"
+        Style="{StaticResource WindowStyle}">
+    <Grid>
+        <Image Name="ima"/>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="35,0,0,0">
+            <TextBlock x:Name="txtDatetime" FontWeight="Bold" FontSize="15" Text="Date Time" Foreground="Black"/>
+        </Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+            <TextBlock Text="KANBAN ELIMINATION" HorizontalAlignment="Center" FontFamily="Calibri" FontSize="25"
+                 Margin="10" Foreground="OrangeRed" FontWeight="ExtraBold"/>
+            <Image Name="image3" Stretch="UniformToFill" VerticalAlignment="Top" Margin="0,35,0,0" Height="35"
+             Width="300" Source="/TRMN_KANBAN_PRINTING;component/Images/HorizantalLine.jpg"/>
+        </Grid>
+        <Border Style="{StaticResource BorderStyle}" VerticalAlignment="Top" HorizontalAlignment="Center"
+            Margin="0,100,0,0">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="300"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="PDS No:"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Kanban No:"/>
+                <ComboBox SelectionChanged="CmbPDS_SelectionChanged" Name="cmbPDS" Grid.Row="0" Grid.Column="1"/>
+                <ComboBox SelectionChanged="CmbKanban_SelectionChanged" Name="cmbKanban" Grid.Row="1" Grid.Column="1"/>
+            </Grid>
+        </Border>
+        <Border Style="{StaticResource BorderStyle}" VerticalAlignment="Top" HorizontalAlignment="Center"
+            Margin="0,215,0,0">
+            <Grid Margin="7">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="115"/>
+                    <ColumnDefinition Width="115"/>
+                    <ColumnDefinition Width="115"/>
+                </Grid.ColumnDefinitions>
+                <Button Click="btnDelete_Click" x:Name="btnDelete" ToolTip="Press Alt+D for Delete" Grid.Column="0"
+                Width="110" HorizontalAlignment="Left">
+                    <TextBlock>
+            <Underline>D</Underline>ELETE
+                    </TextBlock>
+                </Button>
+                <Button Click="btnClear_Click" x:Name="btnClear" ToolTip="Press Alt+C for Clear" Grid.Column="1"
+                Width="110" HorizontalAlignment="Left">
+                    <TextBlock>
+            <Underline>C</Underline>LEAR
+                    </TextBlock>
+                </Button>
+                <Button Click="btnExit_Click" x:Name="btnExit" ToolTip="Press Alt+E for Exit" Grid.Column="2">
+                    <TextBlock>
+            <Underline>E</Underline>XIT
+                    </TextBlock>
+                </Button>
+            </Grid>
+        </Border>
+        <Border Style="{StaticResource BorderStyle}" Margin="0,285,0,9" VerticalAlignment="Stretch"
+            HorizontalAlignment="Center">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="333"/>
+                    <ColumnDefinition Width="55"/>
+                </Grid.ColumnDefinitions>
+                <DataGrid x:Name="dvgDeatils" Grid.ColumnSpan="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="auto" Header="  SL.NO  " ElementStyle="{StaticResource WrapText}" Binding="{Binding SL_NO}"/>
+                        <DataGridTextColumn Width="auto" Header="  PART NO " ElementStyle="{StaticResource WrapText}"
+                                Binding="{Binding PartNo}"/>
+                        <DataGridTextColumn Width="auto" Header="  KANBAN NO " ElementStyle="{StaticResource WrapText}"
+                                Binding="{Binding EkanbanNo}"/>
+                        <DataGridTextColumn Width="auto" Header="  ORDER NO  " ElementStyle="{StaticResource WrapText}"
+                                Binding="{Binding OrderNo}"/>
+                        <DataGridTextColumn Width="auto" Header=" PDS NO  " ElementStyle="{StaticResource WrapText}" Binding="{Binding PDSNo}"/>
+                        <DataGridTextColumn Width="auto" Header=" QTY  " ElementStyle="{StaticResource WrapText}" Binding="{Binding TotalQty}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
