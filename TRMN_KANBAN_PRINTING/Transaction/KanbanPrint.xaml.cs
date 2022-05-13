@@ -515,10 +515,10 @@ namespace TRMN_KANBAN_PRINTING.Transaction
                 {
                     Barcode barcode1 = new Barcode();
                     Barcode barcode2 = new Barcode();
-                    if (table.Rows[i]["SequenceNo"].ToString()!="")
+                    if (table.Rows[i]["SkidBarcodeValue"].ToString()!="")
                     {
                        
-                        barcode1.Data = table.Rows[i]["SequenceNo"].ToString();
+                        barcode1.Data = table.Rows[i]["SkidBarcodeValue"].ToString();
                         barcode1.BarType = BarCodeType.QRCode;
                         barcode1.QRCodeECL = ErrorCorrectionLevelMode.L;
                         barcode1.Width = 1000;
@@ -535,9 +535,9 @@ namespace TRMN_KANBAN_PRINTING.Transaction
                     }
 
 
-                if (table.Rows[i]["SequenceNo1"].ToString() != "")
+                if (table.Rows[i]["SkidBarcodeValue1"].ToString() != "")
                     {
-                        barcode2.Data = table.Rows[i]["SequenceNo1"].ToString();
+                        barcode2.Data = table.Rows[i]["SkidBarcodeValue1"].ToString();
                         barcode2.BarType = BarCodeType.QRCode;
                         barcode2.QRCodeECL = ErrorCorrectionLevelMode.L;
                         barcode2.Width = 1000;
@@ -670,8 +670,7 @@ namespace TRMN_KANBAN_PRINTING.Transaction
                     this.dt.Columns.Add("ARRIVALTIME1");
                     this.dt.Columns.Add("ROUTE1");
                     this.dt.Columns.Add("MAINPLANE");
-                    this.dt.Columns.Add("SKIDNOBARCODE");
-                    this.dt.Columns["SKIDNOBARCODE"].DataType = typeof(byte[]);
+                
                     this.dt.Columns.Add("PLANT");
                     this.dt.Columns.Add("PDSNO");
                     this.dt.Columns.Add("BILLEDOUT");
@@ -683,17 +682,17 @@ namespace TRMN_KANBAN_PRINTING.Transaction
                         if (strArray1[index] != "")
                         {
                             string[] strArray2 = strArray1[index].Split('|');
-                            string str = strArray2[8] + "|" + strArray2[46] + "|" + strArray2[0];
-                            byte[] barcodeInBytes = new Barcode()
-                            {
-                                Data = str,
-                                BarType = BarCodeType.QRCode,
-                                QRCodeECL = ErrorCorrectionLevelMode.L,
-                                Width = 300,
-                                Height = 300,
-                                BackgroundColor = System.Drawing.Color.White
-                            }.CreateBarcodeInBytes();
-                            this.dt.Rows.Add((object)strArray2[0], (object)strArray2[3], (object)(strArray2[1] + "-" + strArray2[2]), (object)strArray2[12], (object)strArray2[13], (object)strArray2[41], (object)strArray2[63], (object)strArray2[38], (object)strArray2[39], (object)strArray2[40], (object)strArray2[42], (object)strArray2[9], (object)strArray2[6], strArray2[15] == "" ? (object)" " : (strArray2[15] == "-" ? (object)"-" : (object)strArray2[15].PadLeft(2, '0')), (object)strArray2[46], (object)strArray2[60], (object)strArray2[41], (object)strArray2[44], strArray2[16] == "" ? (object)"" : (strArray2[16] == "-" ? (object)"-" : (strArray2[16].Substring(0, 4) + "-" + strArray2[17] == "" ? (object)"" : (strArray2[17] == "-" ? (object)"-" : (object)strArray2[17].PadLeft(2, '0')))), (object)strArray2[10], (object)strArray2[22], (object)strArray2[11], (object)strArray2[23], (object)strArray2[20], (object)strArray2[21], strArray2[14] + "-" + strArray2[15] == "" ? (object)"" : (strArray2[15] == "-" ? (object)"-" : (object)strArray2[15].PadLeft(2, '0')), strArray2[14] + "-" + strArray2[15] == "" ? (object)"" : (strArray2[15] == "-" ? (object)"-" : (object)strArray2[15].PadLeft(2, '0')), (object)barcodeInBytes, (object)strArray2[4], (object)strArray2[8], (object)strArray2[57], (object)strArray2[34], (object)strArray2[35]);
+                            //string str = strArray2[8] + "|" + strArray2[46] + "|" + strArray2[0];
+                            //byte[] barcodeInBytes = new Barcode()
+                            //{
+                            //    Data = str,
+                            //    BarType = BarCodeType.QRCode,
+                            //    QRCodeECL = ErrorCorrectionLevelMode.L,
+                            //    Width = 300,
+                            //    Height = 300,
+                            //    BackgroundColor = System.Drawing.Color.White
+                            //}.CreateBarcodeInBytes();
+                            this.dt.Rows.Add((object)strArray2[0], (object)strArray2[3], (object)(strArray2[1] + "-" + strArray2[2]), (object)strArray2[12], (object)strArray2[13], (object)strArray2[41], (object)strArray2[63], (object)strArray2[38], (object)strArray2[39], (object)strArray2[40], (object)strArray2[42], (object)strArray2[9], (object)strArray2[6], strArray2[15] == "" ? (object)" " : (strArray2[15] == "-" ? (object)"-" : (object)strArray2[15].PadLeft(2, '0')), (object)strArray2[46], (object)strArray2[60], (object)strArray2[41], (object)strArray2[44], strArray2[16] == "" ? (object)"" : (strArray2[16] == "-" ? (object)"-" : (strArray2[16].Substring(0, 4) + "-" + strArray2[17] == "" ? (object)"" : (strArray2[17] == "-" ? (object)"-" : (object)strArray2[17].PadLeft(2, '0')))), (object)strArray2[10], (object)strArray2[22], (object)strArray2[11], (object)strArray2[23], (object)strArray2[20], (object)strArray2[21], strArray2[14] + "-" + strArray2[15] == "" ? (object)"" : (strArray2[15] == "-" ? (object)"-" : (object)strArray2[15].PadLeft(2, '0')), strArray2[14] + "-" + strArray2[15] == "" ? (object)"" : (strArray2[15] == "-" ? (object)"-" : (object)strArray2[15].PadLeft(2, '0')), (object)strArray2[4], (object)strArray2[8], (object)strArray2[57], (object)strArray2[34], (object)strArray2[35]);
                         }
                     }
                     this.Transaction("GetPartDetails");

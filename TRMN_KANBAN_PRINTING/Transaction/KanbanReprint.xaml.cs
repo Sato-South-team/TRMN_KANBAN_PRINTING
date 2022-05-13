@@ -405,10 +405,10 @@ namespace TRMN_KANBAN_PRINTING.Transaction
             {
                 Barcode barcode1 = new Barcode();
                 Barcode barcode2 = new Barcode();
-                if (dt.Rows[i]["SequenceNo"].ToString() != "")
+                if (dt.Rows[i]["SkidBarcodeValue"].ToString() != "")
                 {
 
-                    barcode1.Data = dt.Rows[i]["SequenceNo"].ToString();
+                    barcode1.Data = dt.Rows[i]["SkidBarcodeValue"].ToString();
                     barcode1.BarType = BarCodeType.QRCode;
                     barcode1.QRCodeECL = ErrorCorrectionLevelMode.L;
                     barcode1.Width = 1000;
@@ -425,9 +425,9 @@ namespace TRMN_KANBAN_PRINTING.Transaction
                 }
 
 
-                if (dt.Rows[i]["SequenceNo1"].ToString() != "")
+                if (dt.Rows[i]["SkidBarcodeValue1"].ToString() != "")
                 {
-                    barcode2.Data = dt.Rows[i]["SequenceNo1"].ToString();
+                    barcode2.Data = dt.Rows[i]["SkidBarcodeValue1"].ToString();
                     barcode2.BarType = BarCodeType.QRCode;
                     barcode2.QRCodeECL = ErrorCorrectionLevelMode.L;
                     barcode2.Width = 1000;
