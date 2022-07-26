@@ -183,6 +183,7 @@ namespace TRMN_KANBAN_PRINTING.Transaction
                             this.Transaction("Save");
                         }
                     }
+                   
                     if (this.KanbanType == "TRMN Kanban")
                     {
                         ENTITY_LAYER.Transaction.Transaction.Remarks = this.txtTRRemarks.Text;

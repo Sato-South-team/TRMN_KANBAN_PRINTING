@@ -217,6 +217,8 @@
                         <DataGridTextColumn Width="auto" Header=" BILLED OUT "  ElementStyle="{StaticResource WrapText}" Binding="{Binding BILLEDOUT}" />
                         <DataGridTextColumn Width="auto" Header=" REF NO " Visibility="Hidden" ElementStyle="{StaticResource WrapText}" Binding="{Binding REFNO}" />
                         <DataGridTextColumn Width="auto" Header=" TOTALLABEL " Visibility="Hidden" ElementStyle="{StaticResource WrapText}" Binding="{Binding TOTALABEL}" />
+                        <DataGridTextColumn Width="auto" Header=" A " Visibility="Visible" ElementStyle="{StaticResource WrapText}" Binding="{Binding A}" />
+                        <DataGridTextColumn Width="auto" Header=" B " Visibility="Visible" ElementStyle="{StaticResource WrapText}" Binding="{Binding B}" />
 
 
                     </DataGrid.Columns>

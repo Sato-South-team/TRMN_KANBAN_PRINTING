@@ -348,7 +348,7 @@ namespace TRMN_KANBAN_PRINTING.Transaction
                                 this.SeqenceNo = num.ToString() + "/" + ENTITY_LAYER.Transaction.Transaction.Nooflabels;
                                 str8 = num.ToString().PadLeft(5, '0') + "/" + ENTITY_LAYER.Transaction.Transaction.Nooflabels.PadLeft(5, '0');
                             }
-                            ENTITY_LAYER.Transaction.Transaction.Barcodevalue = dataRowView["PDSNO"].ToString() + " " + dataRowView["PARTNO"].ToString().Insert(5, "-").ToString().Insert(11, "-") + " " + str8 + "," + dataRowView["SUPPLIERCODE"].ToString().Replace("-", "") + "," + dataRowView["SUPPLIERCODE"].ToString().Split('-')[1] + "," + dataRowView["LOCATION_NAME"].ToString().Replace(" ", "") + "," + dataRowView["ORDERNO"] + "," + dataRowView["KANBANNO"] + "," + dataRowView["BINQTY"] + "," + dataRowView["DOCKCODE"] + "," + dataRowView["PLANENO"] + "," + dataRowView["CONVEYANCENO"] + "," + dataRowView["STOREADDRESS"];
+                            ENTITY_LAYER.Transaction.Transaction.Barcodevalue = dataRowView["PDSNO"].ToString() + " " + dataRowView["PARTNO"].ToString().Insert(5, "-").ToString().Insert(11, "-") + " " + str8 + "," + dataRowView["SUPPLIERCODE"].ToString().Replace("-", "") + "," + dataRowView["SUPPLIERCODE"].ToString().Split('-')[1] + "," + dataRowView["LOCATION_NAME"].ToString().Replace(" ", "") + "," + dataRowView["ORDERNO"] + "," + dataRowView["KANBANNO"] + "," + dataRowView["BINQTY"] + "," + dataRowView["DOCKCODE"] + "," + dataRowView["PLANENO"] + "," + dataRowView["CONVEYANCENO"] + "," + dataRowView["STOREADDRESS"] + "," + dataRowView["A"] + "," + dataRowView["B"];
                             string barcodevalue = ENTITY_LAYER.Transaction.Transaction.Barcodevalue;
                             //Bitmap barcode = new Barcode()
                             //{
@@ -422,7 +422,6 @@ namespace TRMN_KANBAN_PRINTING.Transaction
                             }
 
                         }
-
                         ReportViewer reportViewer = new ReportViewer();
                         ReportViewer.dtReport = table;
                         ReportViewer.ReportName = "TKMBARCODE";
@@ -676,6 +675,8 @@ namespace TRMN_KANBAN_PRINTING.Transaction
                     this.dt.Columns.Add("BILLEDOUT");
                     this.dt.Columns.Add("DEPATURDATE2");
                     this.dt.Columns.Add("DEPATURTIME2");
+                    this.dt.Columns.Add("A");
+                    this.dt.Columns.Add("B");
                     string[] strArray1 = new StreamReader(this.txtBrowseFile.Text).ReadToEnd().Split('\n');
                     for (int index = 0; index < strArray1.Length; ++index)
                     {
@@ -692,7 +693,7 @@ namespace TRMN_KANBAN_PRINTING.Transaction
                             //    Height = 300,
                             //    BackgroundColor = System.Drawing.Color.White
                             //}.CreateBarcodeInBytes();
-                            this.dt.Rows.Add((object)strArray2[0], (object)strArray2[3], (object)(strArray2[1] + "-" + strArray2[2]), (object)strArray2[12], (object)strArray2[13], (object)strArray2[41], (object)strArray2[63], (object)strArray2[38], (object)strArray2[39], (object)strArray2[40], (object)strArray2[42], (object)strArray2[9], (object)strArray2[6], strArray2[15] == "" ? (object)" " : (strArray2[15] == "-" ? (object)"-" : (object)strArray2[15].PadLeft(2, '0')), (object)strArray2[46], (object)strArray2[60], (object)strArray2[41], (object)strArray2[44], strArray2[16] == "" ? (object)"" : (strArray2[16] == "-" ? (object)"-" : (strArray2[16].Substring(0, 4) + "-" + strArray2[17] == "" ? (object)"" : (strArray2[17] == "-" ? (object)"-" : (object)strArray2[17].PadLeft(2, '0')))), (object)strArray2[10], (object)strArray2[22], (object)strArray2[11], (object)strArray2[23], (object)strArray2[20], (object)strArray2[21], strArray2[14] + "-" + strArray2[15] == "" ? (object)"" : (strArray2[15] == "-" ? (object)"-" : (object)strArray2[15].PadLeft(2, '0')), strArray2[14] + "-" + strArray2[15] == "" ? (object)"" : (strArray2[15] == "-" ? (object)"-" : (object)strArray2[15].PadLeft(2, '0')), (object)strArray2[4], (object)strArray2[8], (object)strArray2[57], (object)strArray2[34], (object)strArray2[35]);
+                            this.dt.Rows.Add((object)strArray2[0], (object)strArray2[3], (object)(strArray2[1] + "-" + strArray2[2]), (object)strArray2[12], (object)strArray2[13], (object)strArray2[41], (object)strArray2[63], (object)strArray2[38], (object)strArray2[39], (object)strArray2[40], (object)strArray2[42], (object)strArray2[9], (object)strArray2[6], strArray2[15] == "" ? (object)" " : (strArray2[15] == "-" ? (object)"-" : (object)strArray2[15].PadLeft(2, '0')), (object)strArray2[46], (object)strArray2[60], (object)strArray2[41], (object)strArray2[44], strArray2[16] == "" ? (object)"" : (strArray2[16] == "-" ? (object)"-" : (strArray2[16].Substring(0, 4) + "-" + strArray2[17] == "" ? (object)"" : (strArray2[17] == "-" ? (object)"-" : (object)strArray2[17].PadLeft(2, '0')))), (object)strArray2[10], (object)strArray2[22], (object)strArray2[11], (object)strArray2[23], (object)strArray2[20], (object)strArray2[21], strArray2[14] + "-" + strArray2[15] == "" ? (object)"" : (strArray2[15] == "-" ? (object)"-" : (object)strArray2[15].PadLeft(2, '0')), strArray2[14] + "-" + strArray2[15] == "" ? (object)"" : (strArray2[15] == "-" ? (object)"-" : (object)strArray2[15].PadLeft(2, '0')), (object)strArray2[4], (object)strArray2[8], (object)strArray2[57], (object)strArray2[34], (object)strArray2[35], (object)strArray2[66], (object)strArray2[67]);
                         }
                     }
                     this.Transaction("GetPartDetails");
